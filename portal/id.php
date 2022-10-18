@@ -17,7 +17,7 @@
                     </div>
                     <div class="bottom">
                         <p>Eziashi Favour</p>
-                        <p class="desi">Undergraude</p>
+                        <p class="desi">Undergruate</p>
                         <div class="barcode">
                             <img src="qr sample.png">
                         </div>
