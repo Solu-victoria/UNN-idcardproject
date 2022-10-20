@@ -41,7 +41,7 @@
             <ul class="nav navbar-nav navbar-right">
 
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png" alt=""/><span class="badge">9</span></a>
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/{{Auth::user()->image}}" alt=""/><span class="badge">9</span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
 							<strong>Account</strong>
@@ -49,7 +49,14 @@
 						<li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> Notification <span class="label label-info">42</span></a></li>
 						</li>
 						<li class="divider"></li>
-						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>	
+						<form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <li class="m_2"><a :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                        this.closest('form').submit();"><i class="fa fa-lock"></i>
+                                    Log out</a>
+                            </li>	
+                        </form>	
 	        		</ul>
 	      		</li>
 
@@ -86,7 +93,7 @@
                                     <a href="id-report">Report Id</a>
                                 </li>
 								<li>
-                                    <a href="id">View Id</a>
+                                    <a href="id/{{Auth::user()->ident_number}}">View Id</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -141,19 +148,26 @@
   	       <h5 style =" text-align:center; margin:auto;">Carefully fill the form to request for your ID card</h5>
   	         <div class="tab-content">
 						<div class="tab-pane active" id="horizontal-form">
-							<form class="form-horizontal">
+							<form class="form-horizontal" action="{{ route('id-request') }}" id="change" method="POST" enctype="multipart/form-data">
+								@csrf
 
 								<div class="form-group">
 									<label for="disabledinput" class="col-sm-2 control-label">Name</label>
-									<div class="col-sm-8">
-						 				<input disabled="" type="text" class="form-control1" id="disabledinput" value="" placeholder="Disabled Input"> 
+									<div class="col-sm-8"> 
+						 				<input readonly type="text" class="form-control1" name="name" id="disabledinput" value="{{ Auth::user()->name }}" placeholder="Disabled Input"> 
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="disabledinput" class="col-sm-2 control-label">Reg Number</label>
+									<label for="disabledinput" class="col-sm-2 control-label">
+										@if (Auth::user()->usertype == 'student') 
+										{{'Reg Number'}}
+										@elseif (Auth::user()->usertype == 'staff')
+										{{'Staff Number'}}
+										@endif 
+									</label>
 									<div class="col-sm-8">
-										<input disabled="" type="text" class="form-control1" id="disabledinput" placeholder="Disabled Input">
+										<input readonly type="text" name="ident_number" class="form-control1" id="disabledinput" value="{{ Auth::user()->ident_number }}" placeholder="Disabled Input">
 									</div>
 								</div>
 
@@ -164,7 +178,7 @@
 											<span class="input-group-addon">
 												<i class="fa fa-envelope-o"></i>
 											</span>
-											<input disabled="" type="text" class="form-control1" placeholder="Email Address">
+											<input readonly type="email" class="form-control1" name="email" value="{{ Auth::user()->email }}" placeholder="Email Address">
 										</div>
 									</div>
 								</div>
@@ -173,37 +187,40 @@
 								<div class="form-group">
 									<label for="disabledinput" class="col-sm-2 control-label">Department</label>
 									<div class="col-sm-8">
-										<input disabled="" type="text" class="form-control1" id="disabledinput" placeholder="Disabled Input">
+										<input readonly type="text" class="form-control1" id="disabledinput" value="{{ Auth::user()->department }}" placeholder="Disabled Input">
 									</div>
 								</div>
 									
 								<div class="form-group">
 									<label for="disabledinput" class="col-sm-2 control-label">Faculty</label>
 									<div class="col-sm-8">
-										<input disabled="" type="text" class="form-control1" id="disabledinput" placeholder="Disabled Input">
+										<input readonly type="text" class="form-control1" id="disabledinput" value="{{ Auth::user()->faculty }}" placeholder="Disabled Input">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="disabledinput" class="col-sm-2 control-label">Phone Number</label>
 									<div class="col-sm-8">
-										<input disabled="" type="text" class="form-control1" id="disabledinput" placeholder="Disabled Input">
+										@php $phone = 'phone-no'; @endphp
+										<input readonly type="text" class="form-control1" id="disabledinput" value="{{ Auth::user()->$phone }}" placeholder="Disabled Input">
 									</div>
 								</div>
 								
-								<div class="form-group">
-									<label for="selector1" class="col-sm-2 control-label">User</label>
-									<div class="col-sm-8"><select name="selector1" id="selector1" class="form-control1">
-										<option>Undergruate</option>
-										<option>Post Graduate</option>
-										<option>PhD</option>
+								<div class="form-group" style= "@if (Auth::user()->usertype == 'staff') 
+										{{'display:none;'}}
+										@endif ">
+									<label for="selector1" class="col-sm-2 control-label">Student type</label>
+									<div class="col-sm-8"><select name="student_type" id="selector1" class="form-control1">
+										<option value="Undergraduate">Undergraduate</option>
+										<option value="Post Graduate">Post Graduate</option>
+										<option value="PhD">PhD</option>
 									</select></div>
 								</div>
 								
 								<div class="form-group">
 									<label  class="col-sm-2 control-label">Address</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" id="" placeholder="">
+										<input type="text" class="form-control1" name="address" id="" placeholder="" required>
 									</div>
 								</div>
 
@@ -213,7 +230,7 @@
 										<div class="col-sm-8 col-sm-offset-2">
 											<button class="btn-success btn">Submit</button>
 											<button class="btn-default btn">Cancel</button>
-											<button class="btn-inverse btn">Reset</button>
+											<a href="id-request" class="btn-inverse btn">Reset</a>
 										</div>
 									</div>
 								</div>

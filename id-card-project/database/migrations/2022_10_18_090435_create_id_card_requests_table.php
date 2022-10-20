@@ -17,11 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('ident_number')->unique();
             $table->string('student-type')->nullable();
             $table->longText('address');
             $table->date('request_date');
             $table->date('date_given')->nullable();
-            // $table->timestamps();
+    
         });
     }
 

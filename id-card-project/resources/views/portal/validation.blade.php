@@ -40,7 +40,7 @@
             <ul class="nav navbar-nav navbar-right">
 
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png" alt=""/><span class="badge">9</span></a>
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/{{Auth::user()->image}}" alt=""/><span class="badge">9</span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
 							<strong>Account</strong>
@@ -48,7 +48,14 @@
 						<li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> Notification <span class="label label-info">42</span></a></li>
 						</li>
 						<li class="divider"></li>
-						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>	
+						<form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <li class="m_2"><a :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                        this.closest('form').submit();"><i class="fa fa-lock"></i>
+                                    Log out</a>
+                            </li>	
+                        </form>
 	        		</ul>
 	      		</li>
 
@@ -86,7 +93,7 @@
                                     <a href="id-report">Report Id</a>
                                 </li>
                                 <li>
-                                    <a href="id">View Id</a>
+                                    <a href="id/{{Auth::user()->ident_number}}">View Id</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -40,7 +40,7 @@
             <ul class="nav navbar-nav navbar-right">
 
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png" alt=""/><span class="badge">9</span></a>
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/{{Auth::user()->image}}" alt=""/><span class="badge">9</span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
 							<strong>Account</strong>
@@ -48,7 +48,14 @@
 						<li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> Notification <span class="label label-info">42</span></a></li>
 						</li>
 						<li class="divider"></li>
-						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>	
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <li class="m_2"><a :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                        this.closest('form').submit();"><i class="fa fa-lock"></i>
+                                    Log out</a>
+                            </li>	
+                        </form>
 	        		</ul>
 	      		</li>
 
@@ -86,7 +93,7 @@
                                     <a href="id-report">Report Id</a>
                                 </li>
                                 <li>
-                                    <a href="id">View Id</a>
+                                    <a href="id/{{Auth::user()->ident_number}}">View Id</a>
                                 </li>
 
                             </ul>
@@ -96,7 +103,7 @@
                             <a href="#"><i class="fa fa-envelope nav_icon"></i>Notifications<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">peyment alert</a>
+                                    <a href="#">payment alert</a>
                                 </li>
                                 <li>
                                     <a href="#">ID card alerts</a>
@@ -140,24 +147,10 @@
 	     <div class="xs">
         
   	         <div class="tab-content">
-			   <?php if (isset($_SESSION['success'])) : ?>
-						<div>
-					<?php
-                        echo $_SESSION['success'];
-                        unset($_SESSION['success']);
-                    ?>
-
-					<?php endif ?>
-
-					<?php  if (isset($_SESSION['staffid'])) : ?>
-
-							<h1 style =" text-align:center; margin:auto; padding:150px; ">WELCOME <?php echo $_SESSION['staffid']; ?> </h1>
-              
-						</div>
-					</div>
-					
-					<?php endif ?>
-        </div>
+			   
+                <h1 style =" text-align:center; margin:auto; padding:150px; ">WELCOME {{ Auth::user()->name }} </h1>
+            		
+            </div>
                   <div class="copy_layout">
                     <p>Copyright © 2022. All Rights Reserved | Design by <a href="#" target="_blank">UNN ID</a> </p>
                   </div>

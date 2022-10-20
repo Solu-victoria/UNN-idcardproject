@@ -36,12 +36,34 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'department' => ['required', 'string', 'max:255'],
+            'faculty' => ['required', 'string', 'max:255'],
+            'phone_no' => ['required', 'string', 'max:20'],
+            'ident_number' => ['required', 'string', 'max:255', 'unique:users'],
+            'usertype' => ['required', 'string', 'max:255'],
+            'image' => ['required', 'mimes:jpg,jpeg,png', 'max:8000'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ], [
+            'phone_no.max' => 'Must not exceed - :max characters',
+            'image.mimes' => 'Image formats allowed are jpg,jpeg,png',
+            'image.max' => 'Image size must be less than 8 MB',
+            'ident_number.unique' => 'This identification number has already been registered, pls login.',
+            'ident_number.required' => 'Pls input a reg no/staff no.',
+            'ident_number.max' => 'This identification numder has passed the maximum limit of 255 characters.',
         ]);
+
+        $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $newImageName);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'department' => $request->department,
+            'phone-no' => $request->phone_no,
+            'faculty' => $request->faculty,
+            'ident_number' => $request->ident_number,
+            'image' => $newImageName,
+            'usertype' => $request->usertype,
             'password' => Hash::make($request->password),
         ]);
 

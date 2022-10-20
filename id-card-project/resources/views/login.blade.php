@@ -31,13 +31,13 @@
         
   </h6> -->
             <label for="name">Registration Number/Staff Number</label>
-            <input type="text" class="form-control" id="otherField" placeholder="Enter reg no/staff no" name="staffid"  required="">
+            <input type="text" class="form-control" id="otherField" placeholder="Enter reg no/staff no" name="ident_number"  required>
           </div>
 
           
           <div class="form-group">
                 <label for="comments">Password</label>
-                <input type="password" class="form-control" id="name" placeholder="Enter password" name="passwors" required="">
+                <input type="password" class="form-control" id="name" placeholder="Enter password" name="password" required>
               
         </div>
          <ul class="form-group">

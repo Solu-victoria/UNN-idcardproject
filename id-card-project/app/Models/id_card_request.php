@@ -12,6 +12,7 @@ class id_card_request extends Model
     protected $fillable = [
         'name',
         'email',
+        'ident_number',
         'student-type',
         'address',
         'request_date',
@@ -20,4 +21,6 @@ class id_card_request extends Model
     protected $hidden = [
         'password',
     ];
+
+    public $timestamps = false;
 }

@@ -23,17 +23,20 @@
 				</div>
 				<div class="col-lg-4 reg-fom">
 					<h4 class="text-white text-center">Login Portal</h4>
-						<form action="validate.php" id="change" method="post" enctype="multipart/form-data">
+						<form class="p-1" action="{{ route('login') }}" id="change" method="post" enctype="multipart/form-data">
+  							@csrf
 							<div class="reg-fom-btm mt-5">
-								<div class="fields">
+								<div class="fields" id='log'>
 									<span class="text-white mb-2">Reg NO/Staff No</span>
-									<input type="text" name="staffid" placeholder="Enter reg no/staff no">
+									<input type="text" name="ident_number" placeholder="Enter reg no/staff no" required>
+									<x-input-error :messages="$errors->get('ident_number')" class="mt-2" />
 								</div>
 							</div>
 							<div class="reg-fom-btm mt-3">
 								<div class="fields">
 									<span class="text-white mb-2">Password</span>
-									<input type="password" name="passwors" placeholder="Enter password">
+									<input type="password" name="password" placeholder="Enter password" required>
+									<x-input-error :messages="$errors->get('password')" class="mt-2" />
 								</div>
 							</div>
 							
