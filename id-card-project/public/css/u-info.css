@@ -1,0 +1,41 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin:auto;
+    color: black;
+    display: table;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    text-align: center;
+}
+.container {
+    border: 20px solid green;
+    width: 750px;
+    height: 563px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.logo {
+    color: green;
+}
+
+.marquee {
+    color: green;
+    font-size: 32px;
+    margin: 20px;
+}
+.assignment {
+    margin: 20px;
+}
+.person {
+    border-bottom: 2px solid black;
+    font-size: 32px;
+    font-style: italic;
+    margin: 20px auto;
+    width: 400px;
+}
+.reason {
+    margin: 20px;
+}

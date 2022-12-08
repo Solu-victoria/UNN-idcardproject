@@ -11,8 +11,7 @@
 <link rel="icon" href="images/favicon-32x32.png">
 <!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
-<link href="css/font-awesome.css" rel="stylesheet" type='text/css'> 
-<link href="css/custom.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="js/jquery.min.js"></script>
 <!----webfonts--->
@@ -92,7 +91,7 @@
                                 <a href="id-report">Report Id</a>
                             </li>
                             <li>
-                                <a href="id/{{urlencode(urlencode(Auth::user()->ident_number))}}">View Id</a>
+                                <a href="id/{{Auth::user()->ident_number}}">View Id</a>
                             </li>
 
                         </ul>

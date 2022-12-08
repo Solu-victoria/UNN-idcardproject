@@ -98,5 +98,32 @@
     
     <script src="js/bootstrap.js"></script>
 
+    <script>
+	function update() {
+ 
+    var slt = document.getElementById('seeAnotherField').value;
+    switch (slt) {
+    case "staff":
+        $('#Div3').show();
+        document.getElementById("reg").removeAttribute("name");
+        $('#Div2').hide();
+        // var link= document.getElementById("change");
+        // link.setAttribute("action", "successs.php");
+        break;
+    case "student":
+        // var link= document.getElementById("change");
+        // link.setAttribute("action", "Success.php");
+        document.getElementById("staff").removeAttribute("name");
+        $('#Div3').hide();
+        $('#Div2').show();
+        break;
+    
+    default:
+    $('#Div3').hide();
+    $('#Div2').hide();
+        break;
+    }
 
+}
+</script>
 	

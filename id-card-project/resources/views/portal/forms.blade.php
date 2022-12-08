@@ -93,7 +93,7 @@
                                     <a href="id-report">Report Id</a>
                                 </li>
 								<li>
-                                    <a href="id/{{Auth::user()->ident_number}}">View Id</a>
+                                    <a href="id/{{urlencode(urlencode(Auth::user()->ident_number))}}">View Id</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -150,12 +150,18 @@
 						<div class="tab-pane active" id="horizontal-form">
 							<form class="form-horizontal" action="{{ route('id-request') }}" id="change" method="POST" enctype="multipart/form-data">
 								@csrf
-
+								@if($errors->isNotEmpty())
+									<div class="alert alert-danger">
+										<x-input-error :messages="$errors->get('ident_number')" class="mt-2" />
+									</div>
+								@endif
 								<div class="form-group">
+							
 									<label for="disabledinput" class="col-sm-2 control-label">Name</label>
 									<div class="col-sm-8"> 
 						 				<input readonly type="text" class="form-control1" name="name" id="disabledinput" value="{{ Auth::user()->name }}" placeholder="Disabled Input"> 
 									</div>
+									
 								</div>
 
 								<div class="form-group">

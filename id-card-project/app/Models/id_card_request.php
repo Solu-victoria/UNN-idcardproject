@@ -18,9 +18,5 @@ class id_card_request extends Model
         'request_date',
     ];
 
-    protected $hidden = [
-        'password',
-    ];
-
     public $timestamps = false;
 }

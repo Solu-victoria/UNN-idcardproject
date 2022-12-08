@@ -15,6 +15,16 @@ class idcardRequestController extends Controller
 
     public function store(Request $request)
     {
+        $id = urlencode(urlencode($request->ident_number));
+        $request->validate([
+            
+            'ident_number' => ['unique:id_card_requests'],
+            
+        ], [
+            
+            'ident_number.unique' => "You have already applied for an ID card, pls click <a href='id/".$id."'>here</a> to view your ID Card printout or <a href='id-report'>here</a> to report your ID Card if you can't find your Physical ID Card ."
+        ]);
+
         $idreq = id_card_request::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -26,7 +36,6 @@ class idcardRequestController extends Controller
 
         event(new Registered($idreq));
 
-        $id_no = $request->ident_number;
-        return redirect('/portal/id/'.$id_no);
+        return redirect('/portal/id/'.$id);
     }
 }

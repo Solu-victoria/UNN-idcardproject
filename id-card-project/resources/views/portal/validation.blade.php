@@ -93,7 +93,7 @@
                                     <a href="id-report">Report Id</a>
                                 </li>
                                 <li>
-                                    <a href="id/{{Auth::user()->ident_number}}">View Id</a>
+                                    <a href="id/{{urlencode(urlencode(Auth::user()->ident_number))}}">View Id</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -147,28 +147,38 @@
         
   	         <div class="tab-content">
 						<div class="tab-pane active" id="horizontal-form">
-							
-                        <h5 style =" text-align:center; margin:auto; padding:10px;">Carefully fill the form to request for your ID card</h5>
-              <form class="form-horizontal">
-               
+                   
+                        @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                        @elseif($errors->isNotEmpty())
+                        <div class="alert alert-danger">
+                            <x-input-error :messages="$errors->get('ident_number')" class="mt-2" />
+                        </div>
+                        @endif
+                        <h5 style =" text-align:center; margin:auto; padding:10px;">Carefully fill the form to report for your ID card</h5>
+                <form class="form-horizontal" method="POST" action="{{ route('id-report') }}">
+                @csrf
                 <div class="form-group">
 									<label for="disabledinput" class="col-sm-2 control-label">Name</label>
 									<div class="col-sm-8">
-                    <input type="text" class="form-control1" ng-model="model.name" required="">
+                    <input type="text" class="form-control1" ng-model="model.name" name="name" required="">
 									</div>
 								</div>
 
                 <div class="form-group">
 									<label for="disabledinput" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-8">
-                    <input type="email" class="form-control1" ng-model="model.email" required="">
+                    <input type="email" class="form-control1" ng-model="model.email" name="email" required="">
 									</div>
 								</div>
 
                 <div class="form-group">
 									<label for="disabledinput" class="col-sm-2 control-label">Staffno/Studentno</label>
 									<div class="col-sm-8">
-                    <input type="text" class="form-control1" ng-model="model.number" ng-pattern="/[0-9]/" required="">
+                    <input type="text" class="form-control1" ng-model="model.number" name="ident_number"  required="">
+                    
 									</div>
 								</div>
 
@@ -178,7 +188,7 @@
                       <div class="col-sm-8 col-sm-offset-2">
                         <button class="btn-success btn">Submit</button>
                         <button class="btn-default btn">Cancel</button>
-                        <button class="btn-inverse btn">Reset</button>
+                        <a href="id-report" class="btn-inverse btn">Reset</a>
                       </div>
                     </div>
                   </div>

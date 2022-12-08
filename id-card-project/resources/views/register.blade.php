@@ -7,7 +7,7 @@
         <li class="breadcrumb-item">
             <a href="/">Home</a>
         </li>
-        <li class="breadcrumb-item active">sign Up</li>
+        <li class="breadcrumb-item active">Sign Up</li>
     </ol>
 
 
@@ -67,12 +67,14 @@
 
           <div class="form-group" id="Div2">
             <label for="name">Registration Number</label>
-            <input type="text" class="form-control"  placeholder="Enter reg no" name="ident_number" >
+            <input type="text" class="form-control"  placeholder="Enter reg no" id="reg" name="ident_number">
+            <x-input-error :messages="$errors->get('ident_number')" class="mt-2" />
           </div>
 
           <div class="form-group" id="Div3">
             <label for="name">Staff Number</label>
-            <input type="text" class="form-control" placeholder="Enter Staff number" name="ident_number" >
+            <input type="text" class="form-control" placeholder="Enter Staff number" id="staff" name="ident_number">
+            <x-input-error :messages="$errors->get('ident_number')" class="mt-2" />
           </div>
           <div class="form-group">
                 <label for="comments">Password</label>
@@ -90,8 +92,8 @@
             <div class="fileUpload btn btn-primary btn-lg btn-block fake-shadow">
                 <span><i class="my-2"></i> Upload passport</span>
                 <input id="logo-id" type="file" name="image" class="attachment_upload" required>
-                <x-input-error :messages="$errors->get('image')" class="mt-2" />
             </div>
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
           <button class="btn btn-primary" type="submit">Submit</button>
             <br/>
@@ -103,4 +105,4 @@
 </form>
 
  @include ('footer'); 
- <script src="js/rickshaw.js"></script>
+ <!-- <script src="js/rickshaw.js"></script> -->

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pagesController;
 use App\Http\Controllers\idcardRequestController;
+use App\Http\Controllers\idcardReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ use App\Http\Controllers\idcardRequestController;
 Route::get('/', [pagesController::class, 'index']);
 Route::get('/about', [pagesController::class, 'about']);
 Route::get('/contact', [pagesController::class, 'contact']);
+Route::get('/info', [pagesController::class, 'info'])->name('info');
 
 Route::get('/portal/index', [pagesController::class, 'pindex']
 )->middleware(['auth', 'verified'])->name('portal_index');
@@ -34,8 +36,13 @@ Route::get('/portal/id-request', [idcardRequestController::class, 'create'])
 
 Route::post('/portal/id-request', [idcardRequestController::class, 'store'])->middleware(['auth', 'verified']);
 
-Route::get('/portal/id-report', [pagesController::class, 'report'])->middleware(['auth', 'verified']);
+Route::post('/portal/id-report', [idcardReportController::class, 'store'])->middleware(['auth', 'verified']);
 
+Route::get('/portal/id-report', [idcardReportController::class, 'create'])
+            ->name('id-report')
+            ->middleware(['auth', 'verified']);
+
+Route::get('/userinfo/{id}', [pagesController::class, 'userinfo']);
 
 // Route::get('/dashboard', function () {
 //     return view('portal.index');

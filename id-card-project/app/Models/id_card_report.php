@@ -15,4 +15,6 @@ class id_card_report extends Model
         'ident_number',
         'reported_at',
     ];
+
+    public $timestamps = false;
 }
