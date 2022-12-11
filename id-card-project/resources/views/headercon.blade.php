@@ -46,7 +46,7 @@
 									<a class="nav-link" href="about">About Us</a>
 								</li>
 								
-								<li class="{{request()->is('contact') ? 'nav-item active' : '' }}">
+								<li class="nav-item {{request()->is('contact') ? 'active' : '' }}">
 									<a class="nav-link" href="contact">Contact Us</a>
 								</li>
 
