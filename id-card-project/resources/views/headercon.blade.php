@@ -42,11 +42,11 @@
 										
 									</a>
 								</li>
-								<li class="nav-item mx-xl-4 mx-lg-3 my-lg-0 my-3">
+								<li class="nav-item mx-xl-4 mx-lg-3 my-lg-0 my-3 {{request()->is('about') ? 'active' : '' }}">
 									<a class="nav-link" href="about">About Us</a>
 								</li>
 								
-								<li class="nav-item active ">
+								<li class="{{request()->is('contact') ? 'nav-item active' : '' }}">
 									<a class="nav-link" href="contact">Contact Us</a>
 								</li>
 
