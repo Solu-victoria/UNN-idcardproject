@@ -29,9 +29,7 @@
         <!-- header -->
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary pt-3">
-               <h1><a class="navbar-brand" href="/">UNN ID
-							<span>CARD SERVICE</span>
-						</a></h1>
+               <h1><a class="navbar-brand" href="/">UNN ID	</a></h1>
 
                 <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +39,7 @@
                     <ul class="navbar-nav ml-auto">
 								<li class="nav-item">
 									<a class="nav-link" href="/">Home
-										<span class="sr-only">(current)</span>
+										
 									</a>
 								</li>
 								<li class="nav-item mx-xl-4 mx-lg-3 my-lg-0 my-3">

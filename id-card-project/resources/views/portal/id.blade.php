@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="back">
-                    <h1 class="Details">information</h1>
+                    <h1 class="Details">Information</h1>
                     <hr class="hr">
                     <div class="details-info">
                         <p><b>University of Nigeria Nsukka </b></p>
