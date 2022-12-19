@@ -35,7 +35,7 @@
 </div>
 
 <div class="reason">
-    is a student of UNN from {{ $info->department}}<br/>
+    is a {{ $info->usertype}} of UNN from {{ $info->department}}<br/>
     with id {{ $info->ident_number}}
 </div>
 </div>
