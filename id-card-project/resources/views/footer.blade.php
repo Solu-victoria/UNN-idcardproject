@@ -106,14 +106,15 @@
     case "staff":
         $('#Div3').show();
         document.getElementById("reg").removeAttribute("name");
+        document.getElementById("staff").setAttribute('name', 'ident_number');
+        
         $('#Div2').hide();
-        // var link= document.getElementById("change");
-        // link.setAttribute("action", "successs.php");
+  
         break;
     case "student":
-        // var link= document.getElementById("change");
-        // link.setAttribute("action", "Success.php");
         document.getElementById("staff").removeAttribute("name");
+        document.getElementById("reg").setAttribute('name', 'ident_number');
+
         $('#Div3').hide();
         $('#Div2').show();
         break;

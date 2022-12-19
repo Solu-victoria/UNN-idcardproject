@@ -68,7 +68,7 @@
           <div class="form-group" id="Div2">
             <label for="name">Registration Number</label>
             <input type="text" class="form-control"  placeholder="Enter reg no" id="reg" name="ident_number">
-            <x-input-error :messages="$errors->get('ident_number')" class="mt-2" />
+            
           </div>
 
           <div class="form-group" id="Div3">
@@ -91,7 +91,7 @@
         <div class="form-group">
             <div class="fileUpload btn btn-primary btn-lg btn-block fake-shadow">
                 <span><i class="my-2"></i> Upload passport</span>
-                <input id="logo-id" type="file" name="image" class="attachment_upload" required>
+                <input id="logo-id" type="file" name="image" class="form-control" required>
             </div>
             <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>

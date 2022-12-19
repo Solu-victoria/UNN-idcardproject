@@ -33,13 +33,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        // // dd($request);
-        // if (is_null($request->staff_number)) {
-        //     $request->staff_number = $request->reg_number;
-        // }else {
-        //     $request->reg_number = $request->staff_number;
-        // }
-        // dd($request);
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -47,20 +41,17 @@ class RegisteredUserController extends Controller
             'faculty' => ['required', 'string', 'max:255'],
             'phone_no' => ['required', 'string', 'max:20'],
             'ident_number' => ['required', 'string', 'max:255', 'unique:users'],
-            // 'ident_number' => ['required', 'string', 'max:255', 'unique:users'],
             'usertype' => ['required', 'string', 'max:255'],
-            'image' => ['required', 'mimes:jpg,jpeg,png', 'max:20000'],
+            'image' => ['required', 'mimes:jpg,jpeg,png', 'max:2000000'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ], [
             'phone_no.max' => 'Must not exceed :max characters',
             'image.mimes' => 'Image formats allowed are jpg,jpeg,png',
-            'image.max' => 'Image size must be less than 8 MB',
-            'ident_number.unique' => 'This identification number has already been registered, pls login.',
+            'image.max' => 'Image size must be less than 2 MB',
+            'ident_number.unique' => 'This reg no/staff no has already been registered, pls login.',
             'ident_number.required' => 'Pls input a reg no/staff no.',
             'ident_number.max' => 'This identification numder has passed the maximum limit of 255 characters.',
-            // 'staff_number.unique' => 'This identification number has already been registered, pls login.',
-            // 'staff_number.required' => 'Pls input a reg no/staff no.',
-            // 'staff_number.max' => 'This identification numder has passed the maximum limit of 255 characters.',
+            
         ]);
 
         $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
