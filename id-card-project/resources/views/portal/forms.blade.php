@@ -212,11 +212,13 @@
 									</div>
 								</div>
 								
-								<div class="form-group" style= "@if (Auth::user()->usertype == 'staff') 
+								<div class="form-group" style= "@if (Auth::user()->usertype === 'staff') 
 										{{'display:none;'}}
 										@endif ">
 									<label for="selector1" class="col-sm-2 control-label">Student type</label>
-									<div class="col-sm-8"><select name="student_type" id="selector1" class="form-control1">
+									<div class="col-sm-8"><select name="@if (Auth::user()->usertype === 'student') 
+										{{'student_type'}}
+										@endif" id="selector1" class="form-control1">
 										<option value="Undergraduate">Undergraduate</option>
 										<option value="Post Graduate">Post Graduate</option>
 										<option value="PhD">PhD</option>

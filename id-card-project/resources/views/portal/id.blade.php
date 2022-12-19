@@ -28,7 +28,7 @@
                             @php $Stype = 'student-type'; 
                                 $id_no = urlencode(urlencode(Auth::user()->ident_number));
                             @endphp
-                            <p class="desi">{{$detail->$Stype}}</p>
+                            <p class="desi">@if($detail->$Stype !== NULL){{$detail->$Stype}} @else {{'Staff'}} @endif</p>
                             <div class="barcode">
                               {!! QrCode::size(80)->generate( URL('userinfo/'.$id_no)) !!}
                             </div>
