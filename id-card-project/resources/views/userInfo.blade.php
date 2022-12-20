@@ -19,7 +19,7 @@
 
 
 <div class="marquee">
-    Certificate of Verificaiton
+    Certificate of Verification
 </div>
 
 <div class="marquee">
